@@ -1,0 +1,27 @@
+$border: 1px solid #d6d9dd;
+
+@mixin title-text-mixin() {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+@mixin title-mixin() {
+    @include title-text-mixin();
+
+    padding: 10px 25px;
+    box-sizing: border-box;
+
+    background: #f5f5f5;
+    border-top: $border;
+    border-bottom: $border;
+}
+
+@mixin content-mixin() {
+    font-size: 12px;
+
+    border-radius: 3px;
+    margin: 0;
+
+    padding: 25px;
+    box-sizing: border-box;
+}

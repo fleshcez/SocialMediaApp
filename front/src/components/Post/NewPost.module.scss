@@ -1,0 +1,44 @@
+@import "./Post.variables.scss";
+
+.newPost {
+    width: 600px;
+    background: white;
+
+    border-radius: 3px;
+    border: $border;
+
+    .title {
+        @include title-mixin();
+
+        button {
+            float: right;
+        }
+
+        input {
+            border-radius: 3px;
+            border: $border;
+
+            @include title-text-mixin();
+        }
+    }
+
+    .content {
+        @include content-mixin();
+
+        textarea {
+            width: 100%;
+            max-width: 538px;
+            min-width: 100px;
+
+            max-height: 150px;
+            min-height: 50px;
+            border-radius: 3px;
+            border: $border;
+        }
+    }
+
+    input,
+    textarea {
+        padding: 2px 5px;
+    }
+}

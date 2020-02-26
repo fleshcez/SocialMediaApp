@@ -1,0 +1,40 @@
+@import "./Post.variables.scss";
+
+.post {
+    width: 600px;
+    background: white;
+
+    border-radius: 3px;
+    border: $border;
+
+    &:not(:last-child) {
+        margin-bottom: 20px;
+    }
+
+    .identity {
+        padding: 25px 25px 0 25px;
+        box-sizing: border-box;
+        margin-bottom:  3px;
+
+        .user {
+            font-size: 16px;
+            font-weight: 700;
+            color: #3578e5;
+        }
+
+        .date {
+            font-size: 12px;
+            font-weight: 200;
+
+            color: #616770;
+        }
+    }
+
+    .title {
+        @include title-mixin();
+    }
+
+    .content {
+        @include content-mixin();
+    }
+}
