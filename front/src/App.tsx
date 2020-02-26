@@ -20,7 +20,7 @@ export function useAuthorization() {
 
   useEffect(() => {
     const activeUser = loginService.tryRestorePayload();
-    setActiveUser({...activeUser} as any);
+    setActiveUser(activeUser);
     loginService.observeUserChange(setActiveUser);
   }, []);
 
