@@ -24,7 +24,7 @@ namespace SocialMediaApp.Data.repositories.PostRepo
 
         public void Delete<T>(T entity) where T : class
         {
-            throw new NotImplementedException();
+            _context.Remove(entity);
         }
 
         public async Task<bool> SaveChangesAsync()
@@ -34,12 +34,12 @@ namespace SocialMediaApp.Data.repositories.PostRepo
 
         public async Task<Post[]> GetAllPostsAsync(string username)
         {
-            return await _context.Posts.Include(p => p.User).ToArrayAsync();
+            return await _context.Posts.Include(p => p.User).OrderByDescending(p => p.TimeStamp).ToArrayAsync();
         }
 
-        public Task<Post> GetPostAsync(int id)
+        public async Task<Post> GetPostAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _context.Posts.FirstOrDefaultAsync(p => p.Id == id);
         }
 
         public Task<Post> GetPostAsync(string userName)

@@ -35,6 +35,17 @@ export class PostService {
             
         }
     }
+
+    public async deletePost(post: IPost): Promise<void> {
+        const appConfig = getAppConfig();
+        const url = `${appConfig.apiUrl}/posts`;
+
+        try {
+            const request = await Axios.delete(`${url}/${post.id}`);
+        }
+        catch(err) {
+        }
+    }
 }
 
 export const postService = new PostService();

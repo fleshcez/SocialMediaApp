@@ -42,29 +42,32 @@ namespace SocialMediaApp.Api.Controllers
             }
         }
 
-        /*
-        [HttpPost]
-        public async Task<ActionResult<User>> PostUser(UserModelWithAddress user)
-        {
-            var usr = _mapper.Map<User>(user);
-            _userRepository.Add(usr);
-            await _userRepository.SaveChangesAsync();
-
-            return CreatedAtAction("GetUser", new { id = user.Id }, _mapper.Map<UserModelWithAddress>(user));
-        }
-        */
-
-
         [HttpPost]
         public async Task<ActionResult<PostModel>> PostPost(PostModel post)
         {
-            var user = await _postRepository.GetUserAsync(post.userUserName);
+            var id = await _postRepository.GetUserIdAsync(post.userUserName);
             var pst = _mapper.Map<Post>(post);
-            pst.User = user;
+            pst.UserId = id;
             _postRepository.Add(pst);
             await _postRepository.SaveChangesAsync();
 
             return _mapper.Map<Post, PostModel>(pst);
+        }
+
+        //DELETE: api/Users/5
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<PostModel>> DeletePost(int id)
+        {
+            var post = await _postRepository.GetPostAsync(id);
+            if (post == null)
+            {
+                return NotFound();
+            }
+
+            _postRepository.Delete(post);
+            await _postRepository.SaveChangesAsync();
+
+            return _mapper.Map<PostModel>(post);
         }
     }
 }

@@ -3,9 +3,22 @@
 .post {
     width: 600px;
     background: white;
+    position: relative;
 
     border-radius: 3px;
     border: $border;
+
+    .delete {
+        position: absolute;
+        background: transparent;
+
+        font-weight: 800;
+        color: #868686;
+        outline: none;
+
+        right: 0;
+        top: 0;
+    }
 
     &:not(:last-child) {
         margin-bottom: 20px;
